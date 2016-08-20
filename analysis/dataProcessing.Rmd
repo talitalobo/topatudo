@@ -85,6 +85,7 @@ empenhos_cpf_acao <- empenhos_cpf_acao[!duplicated(empenhos_cpf_acao), ]
 acao <- acao[!duplicated(acao), ]
 
 empenhos_cpf_acao = empenhos_cpf_acao %>% select(cd_UGestora, cd_Acao, nu_CPF)
+empenhos_cpf_acao <- empenhos_cpf_acao[!duplicated(empenhos_cpf_acao), ]
 
 empenhos_cpf_acao$cd_Acao <- as.character(empenhos_cpf_acao$cd_Acao)
 acao$cd_Acao <- as.character(acao$cd_Acao)
@@ -96,12 +97,18 @@ xx <- merge(empenhos_cpf_acao, acao, by =c("cd_Acao","cd_UGestora"),
       all.x = T)
 
 empenhos.acao = left_join(empenhos_cpf_acao, acao, by = c("cd_Acao","cd_UGestora"))
-
-
-
 ```
 
+Realizando o vocabulário
+```{r}
+vocabulario <- empenhos.acao %>% select(de_Acao)
+vocabulario <- vocabulario[!duplicated(vocabulario), ]
 
+vocabulario
+
+empenhos.vocabulario <-  group_by(empenhos.acao, nu_CPF) %>%
+  summarize(text=paste(de_Acao, collapse=' '))
+```
 
 
 
