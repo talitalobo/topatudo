@@ -1,19 +1,15 @@
-
 var map;
 var panorama;
-var geocoder;
-var marker;
-var initMap = function () {
-    geocoder = new google.maps.Geocoder();
-    marker = new google.maps.Marker({
-        map: map,
-        draggable: true,
-    });
 
+/**
+ * Inicia os dois mapas, dando uma posição inicial.
+ */
+var initMap = function () {
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -7.2329289, lng: -35.9053004 },
         zoom: 15
     });
+
     panorama = new google.maps.StreetViewPanorama(
         document.getElementById('panorama'),
         {
@@ -21,39 +17,44 @@ var initMap = function () {
             pov: { heading: 165, pitch: 0 },
             zoom: 1
         });
-
-    carregarNoMapa("Aderaldo vasconcelos diniz");
 }
 
-var carregarNoMapa = function (endereco) {
-    console.log("ue");
+/**
+ * Busca por um endereço específico.
+ * @param endereco Endereço a ser buscado, pode ser
+ * passado com número, bairro, cidade, etc.
+ */
+var buscaEndereco = function (endereco) {
+    var request = {
+        query: endereco
+    };
+    var service = new google.maps.places.PlacesService(map);
+    service.textSearch(request, callback);
+}
 
-    geocoder.geocode({ 'address': endereco + ', Brasil', 'region': 'BR' }, function (results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-            if (results[0]) {
-                var latitude = results[0].geometry.location.lat();
-                var longitude = results[0].geometry.location.lng();
-
-                var location = new google.maps.LatLng(latitude, longitude);
-                marker.setPosition(location);
-                map.setCenter(location);
-                map.setZoom(16);
-
-                panorama.setPosition(location);
+/**
+ * Callback chamado para atualizar os mapas com a localização buscada.
+ * @param results
+ * @param status
+ */
+var callback = function (results, status) {
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+        var place = results[0];
+        var marker = new google.maps.Marker({
+            map: map,
+            place: {
+                placeId: place.place_id,
+                location: place.geometry.location
             }
+        });
+
+        panorama.setPosition(place.geometry.location);
+
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+        } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
         }
-    });
-}
-
-var createMarker = function(place) {
-  var placeLoc = place.geometry.location;
-  var marker = new google.maps.Marker({
-    map: map,
-    position: place.geometry.location
-  });
-
-  google.maps.event.addListener(marker, 'click', function() {
-    infowindow.setContent(place.name);
-    infowindow.open(map, this);
-  });
+    }
 }
