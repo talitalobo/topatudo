@@ -1,11 +1,11 @@
 var express = require('express');
-var teste = require("./src/js/teste.js");
+var teste = require("./src/js/zoas.js");
 
 var app = express();
 
 app.get('/api/empresas', function (req, res) {
     var empresas = {
-        "empesaX": "minha empresa",
+        "empresaX": "minha empresa",
         "empresaY": "sua empresa"
     };
     res.send(empresas);
@@ -14,13 +14,14 @@ app.get('/api/empresas', function (req, res) {
 app.get('/api/empresa', function (req, res) {
     var requisicao = req.query;
     var empresa = requisicao["empresa"];
-    res.send(buscaEmpresa(empresa));
+    res.send(zoas.buscaEmpresa(empresa));
 });
 
-function buscaEmpresa (empresa) {
-    var infos = "Fui la no meu banco e recuperei as informações para a empresa " + empresa;
-    return infos;
-}
+app.post('/api/cadastro', function (req, res) {
+    
+    console.log(req.body);
+    res.send(req.body);
+});
 
 var server = app.listen(8081, function () {
     var host = server.address().address
