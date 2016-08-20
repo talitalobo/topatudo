@@ -1,5 +1,9 @@
 var map;
 var panorama;
+
+/**
+ * Inicia os dois mapas, dando uma posição inicial.
+ */
 var initMap = function () {
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -7.2329289, lng: -35.9053004 },
@@ -13,9 +17,13 @@ var initMap = function () {
             pov: { heading: 165, pitch: 0 },
             zoom: 1
         });
-    buscaEndereco("Aderaldo vasconcelos diniz");
 }
 
+/**
+ * Busca por um endereço específico.
+ * @param endereco Endereço a ser buscado, pode ser
+ * passado com número, bairro, cidade, etc.
+ */
 var buscaEndereco = function (endereco) {
     var request = {
         query: endereco
@@ -24,6 +32,11 @@ var buscaEndereco = function (endereco) {
     service.textSearch(request, callback);
 }
 
+/**
+ * Callback chamado para atualizar os mapas com a localização buscada.
+ * @param results
+ * @param status
+ */
 var callback = function (results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         var place = results[0];
