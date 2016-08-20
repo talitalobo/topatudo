@@ -226,7 +226,7 @@ fieldset[disabled] .btn-xl.active {
   }
 }
 header {
-  background-image: url('../img/bandeira.png');
+  background-image: url('../img/topatudo.png');
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -295,7 +295,6 @@ section h3.section-subheading {
 }
 @media (min-width: 768px) {
   section {
-    padding-top: 50px 0;
     padding-bottom: 0px;
   }
 }
