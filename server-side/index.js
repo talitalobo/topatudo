@@ -1,17 +1,26 @@
 var express = require('express');
+var teste = require("./src/js/teste.js");
+
 var app = express();
 
-app.get('/init', function (req, res) {
-    res.send("Estou iniciado!");
-});
-
-app.get('/empresas?empresa=emp', function (req, res) {
+app.get('/api/empresas', function (req, res) {
     var empresas = {
         "empesaX": "minha empresa",
-        "empresaY" : "sua empresa"
+        "empresaY": "sua empresa"
     };
     res.send(empresas);
 });
+
+app.get('/api/empresa', function (req, res) {
+    var requisicao = req.query;
+    var empresa = requisicao["empresa"];
+    res.send(buscaEmpresa(empresa));
+});
+
+function buscaEmpresa (empresa) {
+    var infos = "Fui la no meu banco e recuperei as informações para a empresa " + empresa;
+    return infos;
+}
 
 var server = app.listen(8081, function () {
     var host = server.address().address
