@@ -1336,6 +1336,11 @@ mark,
 .text-muted {
   color: #777;
 }
+.text-muted-about {
+  padding-right: 20%;
+  padding-left: 20%;
+  color: #FFFFFF;
+}
 .text-primary {
   color: #337ab7;
 }
@@ -1582,6 +1587,21 @@ pre code {
   overflow-y: scroll;
 }
 .container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.container-about {
+  background: #414042;
+  color: #FFFFFF;
+  padding-top: 60px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.container-empresas {
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
