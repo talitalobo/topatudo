@@ -20,6 +20,8 @@
 				nome: "empresa1",
 				descricao: "descricao generica :D",
 				infos: {
+					localizacao: "Rua antonio cirilo gomes 201",
+					cnpj: "65464984512",
 					sobre: "mais coisas",
 					outros: "nseimais"
 				}
@@ -27,6 +29,8 @@
 				nome: "empresa2",
 				descricao: "Não entre!",
 				infos: {
+					localizacao: "Rua aderaldo vasconcelos diniz 81",
+					cnpj: "987983213",
 					sobre: "voce saiu da jaula!",
 					outros: "Você passou do primeiro teste e não confiou no código. Pensou fora da jaula. Birl."
 				}
