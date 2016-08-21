@@ -304,6 +304,7 @@ section h3.section-subheading {
 }
 #portfolio .portfolio-item {
   margin: 0 0 15px;
+  align-content: center;
   right: 0;
 }
 #portfolio .portfolio-item .portfolio-link {
@@ -343,7 +344,7 @@ section h3.section-subheading {
   margin: 0;
 }
 #portfolio .portfolio-item .portfolio-caption {
-  max-width: 400px;
+  width: 270%;
   margin: 0 auto;
   background-color: white;
   text-align: center;
@@ -727,6 +728,27 @@ ul.social-buttons li a:active {
   opacity: 0;
   display: none;
 }
+
+.modal-infos-empresa {
+  font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: left;
+  font-weight: 26px;
+  display: block;
+  padding: 10px;
+  margin: 10px;
+}
+
+.modal-infos-empresa .nome-empresa {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.modal-infos-empresa .termometro {
+  padding: 30px;
+  margin: 10px;
+  display: block;
+}
+
 ::-moz-selection {
   text-shadow: none;
   background: #fed136;
@@ -745,6 +767,29 @@ body {
   webkit-tap-highlight-color: #fed136;
 }
 
+/**
+* Css dos mapas
+*/
+
+.mapa {
+  height: 500px;
+  margin: 0;
+  padding: 10;
+  width: 40%;
+  float: right;
+}
+
+#map {
+  margin: 10px;
+  height: 50%;
+  width: 100%;
+}
+
+#panorama {
+  margin: 10px;
+  height: 50%;
+  width: 100%;
+}
 
 /*
 * css da caixa de pesquisa

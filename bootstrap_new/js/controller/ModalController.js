@@ -17,6 +17,5 @@
         this.getEmpresaAcessada = function () {
             return ModalService.getEmpresaAcessada();
         };
-
     }])
 } ());
