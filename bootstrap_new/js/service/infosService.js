@@ -39,7 +39,7 @@
 				contatos: ["", "", ""]
 			},
 			{
-				nome: "Arthur Correia",
+				nome: "Arthur Sampaio",
 				cargo: "Analista de Dados e Desenvolvedor Back-End e Front-End",
 				imagem: "",
 				contatos: ["", "", ""]

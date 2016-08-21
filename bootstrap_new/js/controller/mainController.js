@@ -3,7 +3,7 @@
 
 	var modulo = angular.module("TopaTudo");
 
-	modulo.controller('mainController', ['InfosService', function(InfosService){
+	modulo.controller('mainController', ['$scope', 'InfosService', function($scope, InfosService){
 
 		var self = this;
 
@@ -18,11 +18,10 @@
 		};
 
 		this.abrirDetalhes = function(nome) {
-			alert(nome);
+			
 		};
 
 		this.getEmpresas = function(){
-
 			return empresas;
 		};
 	}]);
