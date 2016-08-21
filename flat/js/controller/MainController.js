@@ -19,6 +19,7 @@
 			{
 				nome: "TECNOCENTER MAT. MEDICO HOSPITALAR",
 				descricao: "descricao generica :D",
+				link: "detail01.html",
 				infos: {
 					localizacao: "Rua antonio cirilo gomes 201",
 					cnpj: "6948769000112",
@@ -28,6 +29,7 @@
 			}, {
 				nome: "LARMED DISTR MED MAT MED HOSPITALAR",
 				descricao: "Não entre!",
+				link: "detail02.html",
 				infos: {
 					localizacao: "10831701000126",
 					cnpj: "987983213",
@@ -37,6 +39,7 @@
 			}, {
 				nome: "CIRUFARMA COMERCIAL LTDA",
 				descricao: "Não entre!",
+				link: "detail03.html",
 				infos: {
 					localizacao: "Rua aderaldo vasconcelos diniz 81",
 					cnpj: "40787152000109",
@@ -46,6 +49,7 @@
 			}, {
 				nome: "BERG INDUSTRIA E COMERCIO DE CONFECCOES LTDA",
 				descricao: "Não entre!",
+				link: "detail04.html",
 				infos: {
 					localizacao: "Rua aderaldo vasconcelos diniz 81",
 					cnpj: "879316000103",
@@ -55,6 +59,7 @@
 			}, {
 				nome: "COMERCIAL MEDEIROS LTDA",
 				descricao: "Não entre!",
+				link: "detail05.html",
 				infos: {
 					localizacao: "Rua aderaldo vasconcelos diniz 81",
 					cnpj: "4654716000163",

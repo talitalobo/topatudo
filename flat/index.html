@@ -74,25 +74,10 @@
     <div class="row demo-swatches-row" ng-repeat="empresa in controller.getEmpresas()">
       <div class="swatches-col">
 
-        <div class="pallete-item" href="#modal" data-toggle="modal">
+        <a href="{{ empresa.link }}" target="_blank"><div class="pallete-item">
           <dl class="palette palette-turquoise">
             <p>{{ empresa.nome }}</p>
-            <dt>{{ empresa.descricao }}</dt>
-            <dd>aqui mais informações</dd>
-
-            <div class="row">
-                            <div class="row" style="padding-left:30px;width: 100%;">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:80%">
-                                    80%
-                                </div>
-                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
-                                    20%
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-        </dl>
+        </dl></a>
 
 
     </div>
