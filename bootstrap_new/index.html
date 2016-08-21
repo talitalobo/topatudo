@@ -13,9 +13,11 @@
 
     <!-- scripts -->
     <script src="js/angular.min.js"></script>
-    <script src="js/service/mainService.js"></script>
-    <script src="js/service/infosService.js"></script>
-    <script src="js/controller/mainController.js"></script>
+    <script src="js/service/MainService.js"></script>
+    <script src="js/service/ModalService.js"></script>
+    <script src="js/service/InfosService.js"></script>
+    <script src="js/controller/ModalController.js"></script>
+    <script src="js/controller/MainController.js"></script>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -71,20 +73,20 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!-- Parte que abre o modal, precisamos ver isso-->
+    <!-- Parte da listagem que abre o modal, precisamos ver isso-->
     <!--Nao apagar, se for apagar comentar todo o codigo para termos exemplos do que fazer-->
     <section id="portfolio" class="bg-light-gray">
-        <div class="container">
+        <div class="container" ng-controller="mainController as controller">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">As empresas vem aqui!</h2>
                     <h3 class="section-subheading text-muted">Lorem ipsum dolor sit birl consectetur.</h3>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" ng-repeat="empresa in controller.getEmpresas()">
                 <div class="col-md-12 col-sm-6 portfolio-item">
                     <!--O segredo todo eh aqui, que ele chama o modal-->
-                    <a href="#modal" class="portfolio-link" data-toggle="modal">
+                    <a href="#modal" class="portfolio-link" data-toggle="modal" ng-click="controller.setEmpresa(empresa)">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
                                 <i class="fa fa-plus fa-3x"></i>
@@ -93,8 +95,8 @@
                         <img src="img/portfolio/roundicons.png" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
-                        <h4>Empresa X</h4>
-                        <p class="text-muted">Não entre!</p>
+                        <h4>{{ empresa.nome }}</h4>
+                        <p class="text-muted">{{ empresa.descricao }}</p>
                     </div>
                 </div>
             </div>
@@ -112,13 +114,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="container">
+                <div class="container" ng-controller="ModalController as controller">
                     <div class="row">
                         <div class="col-lg-8 col-lg-offset-2">
                             <div class="modal-body">
                                 <!-- Project Details Go Here -->
-                                <h2>Você saiu da jaula</h2>
-                                <p class="item-intro text-muted">Você passou do primeiro teste e não confiou no código. Pensou fora da jaula.<strong> Birl.</strong></p>
+                                <h2>{{ controller.getEmpresaAcessada().infos.sobre }}</h2>
+                                <p class="item-intro text-muted">{{ controller.getEmpresaAcessada().infos.outros }}</p>
                                 <img class="img-responsive img-centered" src="img/portfolio/roundicons-free.png" alt="">
                                 <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing
                                     elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam
@@ -169,9 +171,9 @@
                 <div class="col-sm-4" ng-repeat="dev in devs">
                     <div class="team-member">
                         <div>
-                            <img src="{{dev['imagem']}}" class="img-responsive img-circle" alt="">
-                            <h4>{{dev["nome"]}}</h4>
-                            <p class="text-muted">{{dev["cargo"]}}</p>
+                            <img src="{{ dev.imagem }}" class="img-responsive img-circle" alt="">
+                            <h4>{{ dev.nome }}</h4>
+                            <p class="text-muted">{{ dev.cargo }}</p>
                             <ul class="list-inline social-buttons">
                                 <li><a href="#"><i class="fa fa-twitter"></i></a>
                                 </li>
