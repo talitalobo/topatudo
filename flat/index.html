@@ -7,12 +7,12 @@
 
   <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
-  <script src="../bootstrap_new/js/angular.min.js"></script>
-  <script src="../bootstrap_new/js/service/MainService.js"></script>
-  <script src="../bootstrap_new/js/service/ModalService.js"></script>
-  <script src="../bootstrap_new/js/service/InfosService.js"></script>
-  <script src="../bootstrap_new/js/controller/ModalController.js"></script>
-  <script src="../bootstrap_new/js/controller/MainController.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/service/MainService.js"></script>
+  <script src="js/service/ModalService.js"></script>
+  <script src="js/service/InfosService.js"></script>
+  <script src="js/controller/ModalController.js"></script>
+  <script src="js/controller/MainController.js"></script>
 
   <!-- Loading Bootstrap -->
   <link href="dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -29,7 +29,7 @@
       <script src="dist/js/vendor/respond.min.js"></script>
       <![endif]-->
   </head>
-  <body>
+  <body ng-app="TopaTudo">
       <div class="container">
 
         <div class="row demo-row navegacao">
@@ -69,7 +69,7 @@
 <h3 class="demo-panel-title">Ranking das empresas por (colocar aqui tipo de filtragem do ranking)</h3>
 
 <div class="row demo-row">
-  <div class="col-md-12" ng-controller="MainController as controller">
+  <div class="col-md-12" ng-controller="mainController as controller">
 
     <div class="row demo-swatches-row" ng-repeat="empresa in controller.getEmpresas()">
       <div class="swatches-col">
@@ -79,7 +79,21 @@
             <p>{{ empresa.nome }}</p>
             <dt>{{ empresa.descricao }}</dt>
             <dd>aqui mais informações</dd>
+
+            <div class="row">
+                            <div class="row" style="padding-left:30px;width: 100%;">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:80%">
+                                    80%
+                                </div>
+                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                    20%
+                                </div>
+                            </div>
+                        </div>
+                        </div>
         </dl>
+
 
     </div>
 
@@ -94,22 +108,40 @@
                         </div>
                     </div>
                 </div>
+
+
                 <div class="container" ng-controller="ModalController as controller">
                     <!-- Lado esquerdo da tela -->
                     <div class="row col-md-6">
                         <!-- Informações da empresa -->
                         <div class="row">
-                            <div class="modal-infos-empresa">
+                            <div class="modal-content">
                                 <p class="nome-empresa">{{ controller.getEmpresaAcessada().nome }}</p>
                                 <p>{{ controller.getEmpresaAcessada().infos.sobre }}</p>
                                 <p>{{ controller.getEmpresaAcessada().infos.localizacao }}</p>
                                 <p>{{ controller.getEmpresaAcessada().infos.cnpj }}</p>
+                                <div class="progress">
+                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:80%">
+                                    80%
+                                </div>
+                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                    20%
+                                </div>
+                            </div>
                             </div>
                         </div>
                         <!-- Termometro -->
                         <div class="row">
-                            <!--Aqui entra o termometro-->
-                            <p>termometro</p>
+                            <div class="row">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:80%">
+                                    80%
+                                </div>
+                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
+                                    20%
+                                </div>
+                            </div>
+                        </div>
                         </div>
                         <!-- Grafico de evolução -->
                         <div class="row">
