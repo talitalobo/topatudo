@@ -1,9 +1,9 @@
 var express = require('express');
-var teste = require("./src/js/main.js");
+var main = require("./src/js/main.js");
 var mysql = require("mysql");
 var app = express();
 
-main.connection = main.startSql();
+main.connection = main.startSql(mysql);
 
 app.get('/api/empresas', function (req, res) {
     res.send(main.recuperaEmpresas());
