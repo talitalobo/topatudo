@@ -1,24 +1,22 @@
 var express = require('express');
-var teste = require("./src/js/zoas.js");
-
+var teste = require("./src/js/main.js");
+var mysql = require("mysql");
 var app = express();
 
+main.connection = main.startSql();
+
 app.get('/api/empresas', function (req, res) {
-    var empresas = {
-        "empresaX": "minha empresa",
-        "empresaY": "sua empresa"
-    };
-    res.send(empresas);
+    res.send(main.recuperaEmpresas());
 });
 
 app.get('/api/empresa', function (req, res) {
     var requisicao = req.query;
     var empresa = requisicao["empresa"];
-    res.send(zoas.buscaEmpresa(empresa));
+    res.send(main.buscaEmpresa(empresa));
 });
 
 app.post('/api/cadastro', function (req, res) {
-    
+
     console.log(req.body);
     res.send(req.body);
 });
