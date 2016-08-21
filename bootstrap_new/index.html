@@ -71,14 +71,6 @@
         <!-- /.container-fluid -->
     </nav>
 
-
-    <section id="empresas" class="bg-light-gray" ng-controller="mainController as controller">
-        <div class="container-empresas" ng-repeat="empresa in controller.getEmpresas()">
-            <p ng-click="controller.abrirDetalhes(empresa.nome)"> <a>{{empresa["nome"]}}</a>
-            </p>
-        </div>
-    </section>
-
     <!-- Parte que abre o modal, precisamos ver isso-->
     <!--Nao apagar, se for apagar comentar todo o codigo para termos exemplos do que fazer-->
     <section id="portfolio" class="bg-light-gray">
