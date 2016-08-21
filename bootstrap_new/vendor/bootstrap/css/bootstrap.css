@@ -1121,6 +1121,8 @@ img {
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   display: block;
+  margin: 0 auto;
+  align-content: center;
   max-width: 100%;
   height: auto;
 }
@@ -1141,6 +1143,8 @@ img {
           transition: all .2s ease-in-out;
 }
 .img-circle {
+  height: 55%;
+  width: 55%;
   border-radius: 50%;
 }
 hr {
@@ -1595,7 +1599,7 @@ pre code {
 .container-about {
   background: #414042;
   color: #FFFFFF;
-  padding-top: 60px;
+  padding-top: 30px;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -1605,6 +1609,20 @@ pre code {
   padding-top: 20px;
   padding-right: 15px;
   padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.container-devs {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-top: -60px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.container-search {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-top: -42px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -2116,6 +2134,7 @@ pre code {
     float: left;
   }
   .col-lg-12 {
+    padding-top: 30px;
     width: 100%;
   }
   .col-lg-11 {

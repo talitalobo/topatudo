@@ -39,196 +39,199 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-</head>
+    </head>
 
-<body id="page-top" class="index" ng-app="TopaTudo">
+    <body id="page-top" class="index" ng-app="TopaTudo">
 
-    <!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <!-- Navigation -->
+        <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                     </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Topa Tudo</a>
-            </div>
+                    <a class="navbar-brand page-scroll" href="#page-top" style="font-family: Montserrat">Topa Tudo</a>
+                </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">Sobre</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#team">Quem somos</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-
-    <!-- Parte da listagem que abre o modal, precisamos ver isso-->
-    <!--Nao apagar, se for apagar comentar todo o codigo para termos exemplos do que fazer-->
-    <section id="portfolio" class="bg-light-gray">
-        <div class="container" ng-controller="mainController as controller">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">As empresas vem aqui!</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit birl consectetur.</h3>
-                </div>
-            </div>
-            <div class="row" ng-repeat="empresa in controller.getEmpresas()">
-                <div class="col-md-12 col-sm-6 portfolio-item">
-                    <!--O segredo todo eh aqui, que ele chama o modal-->
-                    <a href="#modal" class="portfolio-link" data-toggle="modal" ng-click="controller.setEmpresa(empresa)">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/roundicons.png" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>{{ empresa.nome }}</h4>
-                        <p class="text-muted">{{ empresa.descricao }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- modal -->
-    <!--Nao apagar, se for apagar comentar todo o codigo para termos exemplos do que fazer-->
-    <div class="portfolio-modal modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl">
-                        </div>
-                    </div>
-                </div>
-                <div class="container" ng-controller="ModalController as controller">
-                    <div class="row">
-                        <div class="col-lg-8 col-lg-offset-2">
-                            <div class="modal-body">
-                                <!-- Project Details Go Here -->
-                                <h2>{{ controller.getEmpresaAcessada().infos.sobre }}</h2>
-                                <p class="item-intro text-muted">{{ controller.getEmpresaAcessada().infos.outros }}</p>
-                                <img class="img-responsive img-centered" src="img/portfolio/roundicons-free.png" alt="">
-                                <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing
-                                    elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam
-                                    quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis
-                                    facere nemo!</p>
-                                <p>
-                                    <strong>Want these icons in this portfolio item sample?</strong>You can download 60 of
-                                    them for free, courtesy of <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">RoundIcons.com</a>,
-                                    or you can purchase the 1500 icon set <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">here</a>.</p>
-                                <ul class="list-inline">
-                                    <li>Date: July 2014</li>
-                                    <li>Client: Round Icons</li>
-                                    <li>Category: Graphic Design</li>
-                                </ul>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- About Section -->
-    <section id="about" class="container-about">
-        <div class="container-about">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h2 class="section-heading">Sobre</h2>
-                    <h3 class="section-subheading text-muted-about">A ideia principal do Topa Tudo é, através de análise de dados de licitações, encontrar empresas potencialmente
-                        corruptas, que fornecem serviços incompatíveis com sua competência ou de competências muito divergentes.</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section id="team" class="bg-light-gray">
-        <div class="container" ng-controller="mainController as controller">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Nossa equipe</h2>
-                    <h3 class="section-subheading text-muted">Estamos felizes em contribuir com o combate à corrupção.</h3>
-                </div>
-            </div>
-            <div class="row" ng-repeat="devs in controller.getDevs()">
-                <div class="col-sm-4" ng-repeat="dev in devs">
-                    <div class="team-member">
-                        <div>
-                            <img src="{{ dev.imagem }}" class="img-responsive img-circle" alt="">
-                            <h4>{{ dev.nome }}</h4>
-                            <p class="text-muted">{{ dev.cargo }}</p>
-                            <ul class="list-inline social-buttons">
-                                <li><a href="#"><i class="fa fa-twitter"></i></a>
-                                </li>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a>
-                                </li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <p class="large text-muted">Estamos felizes em contribuir com o combate à corrupção.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; Topa Tudo 2016</span>
-                </div>
-                <div class="col-md-4">
-
-                </div>
-                <div class="col-md-4">
-                    <ul class="list-inline social-buttons">
-                        <li><a href="https://www.facebook.com/analytics.ufcg" target="_blank"><i class="fa fa-facebook"></i></a>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#about">Sobre</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#team">Quem somos</a>
                         </li>
                     </ul>
                 </div>
+                <div class="container-search">
+                    <div class="row">
+                        <div class="col-md-5 col-md-offset-3">
+                            <form action="" class="search-form">
+                                <div class="form-group has-feedback">
+                                    <label for="search" class="sr-only">Search</label>
+                                    <input type="text" class="form-control" name="search" id="search" placeholder="pesquisar">
+                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.navbar-collapse -->
             </div>
-        </div>
-    </footer>
+            <!-- /.container-fluid -->
+        </nav>
 
-    <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+        <!-- Parte da listagem que abre o modal, precisamos ver isso-->
+        <!--Nao apagar, se for apagar comentar todo o codigo para termos exemplos do que fazer-->
+        <section id="portfolio" class="bg-light-gray">
+            <div class="container" ng-controller="mainController as controller">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">As empresas vem aqui!</h2>
+                        <h3 class="section-subheading text-muted">Blablablaablbalbalbal.</h3>
+                    </div>
+                </div>
+                <div class="row" ng-repeat="empresa in controller.getEmpresas()">
+                    <div class="col-md-12 col-sm-6 portfolio-item">
+                        <!--O segredo todo eh aqui, que ele chama o modal-->
+                        <a href="#modal" class="portfolio-link" data-toggle="modal" ng-click="controller.setEmpresa(empresa)">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content">
+                                    <i class="fa fa-plus fa-3x"></i>
+                                </div>
+                            </div>
+                            <img src="img/topatudo.png" class="img-responsive" alt="">
+                        </a>
+                        <div class="portfolio-caption">
+                            <h4>{{ empresa.nome }}</h4>
+                            <p class="text-muted">{{ empresa.descricao }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!-- modal -->
+        <!--Nao apagar, se for apagar comentar todo o codigo para termos exemplos do que fazer-->
+        <div class="portfolio-modal modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-dismiss="modal">
+                        <div class="lr">
+                            <div class="rl">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container" ng-controller="ModalController as controller">
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here -->
+                                    <h2>{{ controller.getEmpresaAcessada().infos.sobre }}</h2>
+                                    <p class="item-intro text-muted">{{ controller.getEmpresaAcessada().infos.outros }}</p>
+                                    <img class="img-responsive img-centered" src="img/topatudo.png" alt="">
+                                    <p>Informações da empresa!</p>
+                                        <p>
+                                            <strong>Empresa ruim? Problemas?</strong></p>
+                                            <ul class="list-inline">
+                                                <li>Data de criação: July 2014</li>
+                                                <li>Qualquer coisa: Round Icons</li>
+                                                <li>Diz ae: Graphic Design</li>
+                                            </ul>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+                <!-- About Section -->
+                <section id="about" class="container-about">
+                    <div class="container-about">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <h2 class="section-heading">Sobre</h2>
+                                <h3 class="section-subheading text-muted-about">A ideia principal do Topa Tudo é, através de análise de dados de licitações, encontrar empresas potencialmente
+                                    corruptas, que fornecem serviços incompatíveis com sua competência ou de competências muito divergentes.</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
-    <!-- Theme JavaScript -->
-    <script src="js/agency.min.js"></script>
+                    <!-- Team Section -->
+                    <section id="team" class="bg-light-gray">
+                        <div class="container-devs" ng-controller="mainController as controller">
+                            <div class="row">
+                                <div class="col-lg-12 text-center">
+                                    <h2 class="section-heading">Nossa equipe</h2>
+                                    <h3 class="section-subheading text-muted">Estamos felizes em contribuir com o combate à corrupção.</h3>
+                                </div>
+                            </div>
+                        <div class="row" ng-repeat="devs in controller.getDevs()">
+                            <div class="col-sm-4" ng-repeat="dev in devs">
+                                <div class="team-member">
+                                    <div>
+                                        <img src="{{ dev.imagem }}" class="img-responsive img-circle" alt="">
+                                        <h4>{{ dev.nome }}</h4>
+                                        <p class="text-muted">{{ dev.cargo }}</p>
+                                        <ul class="list-inline social-buttons">
+                                            <li><a ng-href="{{ dev.contatos[0] }}" target="_blank"><i class="fa fa-github"></i></a>
+                                            </li>
+                                            <li><a ng-href="{{ dev.contatos[1] }}" target="_blank"><i class="fa fa-facebook"></i></a>
+                                            </li>
+                                            <li><a ng-href="{{ dev.contatos[2] }}" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </section>
 
-</body>
+                    <footer>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <span class="copyright">Copyright &copy; Topa Tudo 2016</span>
+                                </div>
+                                <div class="col-md-4">
 
-</html>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul class="list-inline social-buttons">
+                                        <li><a href="https://www.facebook.com/analytics.ufcg" target="_blank"><i class="fa fa-facebook"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+
+                    <!-- jQuery -->
+                    <script src="vendor/jquery/jquery.min.js"></script>
+
+                    <!-- Bootstrap Core JavaScript -->
+                    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+                    <!-- Plugin JavaScript -->
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+                    <!-- Contact Form JavaScript -->
+                    <script src="js/jqBootstrapValidation.js"></script>
+                    <script src="js/contact_me.js"></script>
+
+                    <!-- Theme JavaScript -->
+                    <script src="js/agency.min.js"></script>
+
+                </body>
+
+                </html>
