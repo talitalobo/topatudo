@@ -11,6 +11,12 @@
 
     <title>Topa Tudo</title>
 
+    <!-- Load c3.css -->
+    <link href="c3/c3.css" rel="stylesheet" type="text/css">
+
+    <!-- Load d3.js and c3.js -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
     <!-- scripts -->
     <script src="js/angular.min.js"></script>
     <script src="js/mapsLoader.js"></script>
@@ -18,7 +24,10 @@
     <script src="js/service/ModalService.js"></script>
     <script src="js/service/InfosService.js"></script>
     <script src="js/controller/ModalController.js"></script>
+    <script src="js/controller/GraphController.js"></script>
     <script src="js/controller/MainController.js"></script>
+
+    
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -42,16 +51,16 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-</head>
+    </head>
 
-<body id="page-top" class="index" ng-app="TopaTudo">
+    <body id="page-top" class="index" ng-app="TopaTudo">
 
-    <!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <!-- Navigation -->
+        <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                     </button>
                     <a class="img-navbar" href="#page-top"><img src="img/topatudo.png"/></a>
@@ -145,18 +154,34 @@
                         </div>
                         <!-- Termometro -->
                         <div class="row">
-                            <!--Aqui entra o termometro-->
-                            <p>termometro</p>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:90%">
+                                    80%
+                                </div>
+                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:10%">
+                                    20%
+                                </div>
+                            </div>
                         </div>
                         <!-- Grafico de evolução -->
-                        <div class="row">
+                        <div id="chart" class="row" ng-controller="GraphController as controller">
                             <!--Aqui entra o grafico-->
-                            <p>grafico</p>
+                            {{ controller.chart }}
                         </div>
                         <!-- Cluster -->
                         <div class=row>
                             <p>Grafico cluster</p>
                         </div>
+                    </div>
+                    <!-- Lado direito da tela -->
+                    <div class="row col-md-6 mapa">
+                        <div id="map">a</div>
+                        <div id="panorama">s</div>
+                        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHpNq2XMrvxC6QsL5JwPZTsgQ5F5mp4r0&libraries=places&callback=initMap">
+                        </script>
+                        <!-- <script>
+                            buscaEndereco(controller.getEmpresaAcessada().infos.localizacao);
+                        </script> -->
                     </div>
                 </div>
 
@@ -193,77 +218,77 @@
                     <h2 class="section-heading">Sobre</h2>
                     <h3 class="section-subheading text-muted-about">A ideia principal do Topa Tudo é, através de análise de dados de licitações, encontrar empresas potencialmente
                         corruptas, que fornecem serviços incompatíveis com sua competência ou de competências muito divergentes.</h3>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Team Section -->
-    <section id="team" class="bg-light-gray">
-        <div class="container-devs" ng-controller="mainController as controller">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Nossa equipe</h2>
-                    <h3 class="section-subheading text-muted">Estamos felizes em contribuir com o combate à corrupção.</h3>
+        <!-- Team Section -->
+        <section id="team" class="bg-light-gray">
+            <div class="container-devs" ng-controller="mainController as controller">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">Nossa equipe</h2>
+                        <h3 class="section-subheading text-muted">Estamos felizes em contribuir com o combate à corrupção.</h3>
+                    </div>
                 </div>
-            </div>
-            <div class="row" ng-repeat="devs in controller.getDevs()">
-                <div class="col-sm-4" ng-repeat="dev in devs">
-                    <div class="team-member">
-                        <div>
-                            <img src="{{ dev.imagem }}" class="img-responsive img-circle" alt="">
-                            <h4>{{ dev.nome }}</h4>
-                            <p class="text-muted">{{ dev.cargo }}</p>
-                            <ul class="list-inline social-buttons">
-                                <li><a ng-href="{{ dev.contatos[0] }}" target="_blank"><i class="fa fa-github"></i></a>
-                                </li>
-                                <li><a ng-href="{{ dev.contatos[1] }}" target="_blank"><i class="fa fa-facebook"></i></a>
-                                </li>
-                                <li><a ng-href="{{ dev.contatos[2] }}" target="_blank"><i class="fa fa-linkedin"></i></a>
-                                </li>
-                            </ul>
+                <div class="row" ng-repeat="devs in controller.getDevs()">
+                    <div class="col-sm-4" ng-repeat="dev in devs">
+                        <div class="team-member">
+                            <div>
+                                <img src="{{ dev.imagem }}" class="img-responsive img-circle" alt="">
+                                <h4>{{ dev.nome }}</h4>
+                                <p class="text-muted">{{ dev.cargo }}</p>
+                                <ul class="list-inline social-buttons">
+                                    <li><a ng-href="{{ dev.contatos[0] }}" target="_blank"><i class="fa fa-github"></i></a>
+                                    </li>
+                                    <li><a ng-href="{{ dev.contatos[1] }}" target="_blank"><i class="fa fa-facebook"></i></a>
+                                    </li>
+                                    <li><a ng-href="{{ dev.contatos[2] }}" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; Topa Tudo 2016</span>
-                </div>
-                <div class="col-md-4">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="copyright">Copyright &copy; Topa Tudo 2016</span>
+                    </div>
+                    <div class="col-md-4">
 
-                </div>
-                <div class="col-md-4">
-                    <ul class="list-inline social-buttons">
-                        <li><a href="https://www.facebook.com/analytics.ufcg" target="_blank"><i class="fa fa-facebook"></i></a>
-                        </li>
-                    </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <ul class="list-inline social-buttons">
+                            <li><a href="https://www.facebook.com/analytics.ufcg" target="_blank"><i class="fa fa-facebook"></i></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
 
-    <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+        <!-- jQuery -->
+        <script src="vendor/jquery/jquery.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <!-- Plugin JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+        <!-- Contact Form JavaScript -->
+        <script src="js/jqBootstrapValidation.js"></script>
+        <script src="js/contact_me.js"></script>
 
-    <!-- Theme JavaScript -->
-    <script src="js/agency.min.js"></script>
+        <!-- Theme JavaScript -->
+        <script src="js/agency.min.js"></script>
 
-</body>
+    </body>
 
-</html>
+    </html>

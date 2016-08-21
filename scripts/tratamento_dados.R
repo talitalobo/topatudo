@@ -39,8 +39,9 @@ agrupaLicitacaoDup2 <- agrupaLicitacaoDup %>%
 
 
 
-############
+###########
 
+# Conta total vitorias e derrotas
 
 propostas2015 <- read.csv("C:/Users/bac/workspace/hack6/topatudo/dados/propostas2015.csv")
 
@@ -67,3 +68,12 @@ propostasTotal <- full_join(agrupaDerrotas, agrupaVitorias, by = "nu_CPFCNPJ")
 
 propostasTotal[is.na(propostasTotal)] <- 0
 
+write.csv2(propostasTotal, file = "propostasTotal.csv", row.names = F)
+
+# Agrupa por tipo de licitacao
+
+agrupaPropostasTipo <- propostas2015 %>%
+  group_by(nu_CPFCNPJ, tp_Licitacao, st_Proposta, nu_Licitacao) %>%
+  summarise(totalVitorias = sum(n()))
+
+empresa.tipo = propostas
