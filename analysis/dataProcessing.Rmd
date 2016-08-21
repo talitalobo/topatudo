@@ -46,7 +46,7 @@ participantes <- participantes %>% filter(dt_Ano == 2015, nu_CPFCNPJ != "0000000
 Selecionando as variaveis em Empenho2015
 
 ```{r}
-empenho.data = empenhos2015 %>% select(cd_Acao,vl_Empenho, cd_Programa,nu_Licitacao,nu_Empenho, nu_CPFCNPJ)
+empenho.data = empenhos2015 %>% select(cd_Acao,vl_Empenho, cd_Programa,nu_Licitacao,nu_Empenho, nu_CPF, de_Historico)
 ```
 
 Filtrando os n√∫mero de licita√ß√µes que possue valor inv√°lido. 
@@ -108,13 +108,136 @@ vocabulario
 
 empenhos.vocabulario <-  group_by(empenhos.acao, nu_CPF) %>%
   summarize(text=paste(de_Acao, collapse=' '))
+
+write.csv2(empenhos.vocabulario, file = "C:/Users/Sarah/Documents/HackFestVII/HackFest/Analysis/HackFestempenhos_vocabularios.csv", row.names = F)
+
+
+write.csv2(vocabulario, file = "C:/Users/Sarah/Documents/HackFestVII/HackFest/Analysis/vocabularios.csv", row.names = F)
+
 ```
 
 
 
+#Para saber quem ganhou e quem perdeu. 
+
+Em st_Proposta: 
+    1 - Ganhou
+    2 - Perdeu
+```{r}
+
+propostas <- read.csv("C:/Users/Sarah/Documents/HackFestVII/HackFest/CSV/propostas.csv")
+
+propostas
+
+propostas2015 = propostas %>% filter(dt_Ano == 2015, nu_CPFCNPJ != '00000000000000') %>%
+  select(cd_UGestora, nu_Licitacao,tp_Licitacao, nu_CPFCNPJ, vl_Ofertado, st_Proposta, dt_MesAno) 
+
+library(readr)
+
+readr::write_csv(propostas2015, "C:/Users/Sarah/Documents/HackFestVII/HackFest/Analysis/propostas2015.csv")
+
+```
+
+#Mapeando cnpj por histÛrico
+
+```{r}
+empenho.data = empenhos2015 %>% select(cd_Acao,vl_Empenho, cd_Programa,nu_Licitacao,nu_Empenho, nu_CPF, de_Historico)
+```
+
+Filtrando os n√∫mero de licita√ß√µes que possue valor inv√°lido. 
+
+```{r}
+empenho.data = empenho.data %>% filter( nu_Licitacao != '000000000')
+```
+
+```{r}
+historico.cnpj = empenho.data %>% select(nu_CPF, de_Historico)
+
+
+#retirando os duplicadosa
+
+historico.cnpj <- historico.cnpj[!duplicated(historico.cnpj), ]
+historico.cnpj$nu_CPF <- as.character(historico.cnpj$nu_CPF)
+
+#Agrupando
+
+cnpj.historio.agrup <-  group_by(historico.cnpj, nu_CPF) %>%
+  summarize(text=paste(de_Historico, collapse=' '))
+
+historico.completo <- group_by(historico.cnpj) %>%
+  summarize(text=paste(de_Historico, collapse = ' ', encoding = "UTF-8"))
+
+readr::write_rds(historico.completo, "C:/Users/Sarah/Documents/HackFestVII/HackFest/Analysis/historicoCompleto.csv")
+
+readr::write_csv(cnpj.historio.agrup,     "C:/Users/Sarah/Documents/HackFestVII/HackFest/Analysis/historicoByCnpj.csv" )
+
+```
+
+
+#Dataset de Empresa localizaÁ„o
 
 
 
 
+```{r}
+empenho.data = empenhos2015 %>% select(cd_Acao,vl_Empenho, cd_Programa,nu_Licitacao,nu_Empenho, nu_CPF, de_Historico)
+
+empenho.data = empenho.data %>% filter( nu_Licitacao != '000000000')
+
+```
+
+Filtrando os n√∫mero de licita√ß√µes que possue valor inv√°lido. 
+
+```{r}
+
+data = cnpj.historio.agrup
+
+mrg_cnpj <- readr::read_csv2("C:/Users/Sarah/Documents/HackFestVII/HackFest/cnpj_cnaef_geoloc/mrg_all.csv")
+
+mrg_cnpj = mrg_cnpj %>% filter(estado == "PB")
+
+mrg_cnpj = mrg_cnpj %>% select(cep,cnpj, latitude, longitude)
+
+names(mrg_cnpj) = c("cep","nu_CPF", "lat","lng")
+
+mrg_cnpj$nu_CPF<- as.numeric(mrg_cnpj$nu_CPF)
+data <- as.character(data$nu_CPF)
+
+cnpj.cep = data.cep %>% filter(nu_CPF %in% data)
+
+cnpj.cep <- cnpj.cep[!duplicated(cnpj.cep), ]
+
+
+```
+
+#Realizando o cluster
+```{r}
+concorrencia = apply(coocorrencia[ ,2:ncol(coocorrencia)], MARGIN = 2, scale)
+concorrencia.dist = dist(concorrencia)
+(concorrencia.hclust = hclust(concorrencia.dist,  method = "complete"))
+plot(concorrencia.hclust, hang = -1, labels = F)
+#o cluster n„o foi aplicado
+```
+
+```{r}
+#gerando as informaÁıes referente as vitÛrias do tipo. 
+ propostasPorTipo.grafico.de.barra <- read.csv("C:/Users/Sarah/Documents/HackFestVII/HackFest/CSV/propostasPorTipo-grafico de barra.csv", sep=";", encoding = "UTF-8")
+
+empresaVitoriaDerrota.Termomtro %>% filter(nu_CPFCNPJ == 4654716000163)
+
+a = c(6948769000112, 10831701000126, 40787152000109, 879316000103, 4654716000163)
+
+oscinco = propostasPorTipo.grafico.de.barra %>% filter (nu_CPFCNPJ %in% a[5])
+
+
+```
+
+```{r}
+ggplot(oscinco, mapping = aes(x = reorder(de_TipoLicitacao, -totalVitorias), y = totalVitorias, fill = de_TipoLicitacao) ) + 
+  geom_bar(stat = "identity") + coord_flip() +
+  theme_classic() + 
+  theme(legend.position="none") +
+  labs(y = "VitÛrias", x = "")
+```
 
 
