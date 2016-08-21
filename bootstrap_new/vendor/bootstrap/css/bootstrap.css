@@ -2096,7 +2096,7 @@ pre code {
     margin-left: 91.66666667%;
   }
   .col-md-offset-10 {
-    margin-left: 83.33333333%;
+    margin-left: 85%;
   }
   .col-md-offset-9 {
     margin-left: 75%;
@@ -4400,8 +4400,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     float: left;
   }
   .navbar-nav > li > a {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 5px;
+    padding-bottom: 11px;
   }
 }
 .navbar-form {
