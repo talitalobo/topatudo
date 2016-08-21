@@ -1,0 +1,120 @@
+---
+title: "testes"
+runtime: shiny
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(shiny)
+library(ggfortify)
+```
+
+Iniciando os arquivos
+
+```{r}
+
+empenhos2015 <- read.csv("C:/Users/Sarah/Documents/HackFestVII/HackFest/CSV/empenhos_2015.csv", header=T)
+
+participantes <- read.csv("C:/Users/Sarah/Documents/HackFestVII/HackFest/CSV/participantes.csv")
+
+```
+
+
+Filtrando para o ano de 2015 e os CPF/CNPJs inválidos, que contém sua numeração composta apenas de zeros
+```{r}
+
+participantes <- participantes %>% filter(dt_Ano == 2015, nu_CPFCNPJ != "00000000000000")
+
+```
+
+```{r}
+  names(empenhos2015) <- c("cd_UGestora","dt_Ano","cd_UnidOrcamentaria","cd_Funcao","cd_Subfuncao","cd_Programa",
+                          "cd_Acao","cd_classificacao" ,"cd_CatEconomica","cd_NatDespesa", "cd_Modalidade",
+                          "cd_Elemento", "cd_SubElemento" ,"tp_Licitacao" ,"nu_Licitacao" ,"nu_Empenho"
+                          ,"tp_Empenho","dt_Empenho", "vl_Empenho", "cd_Credor", "no_Credor", "tp_Credor",
+                          "de_Historico1", "de_Historico2", "de_Historico", "tp_Meta", "nu_Obra", "dt_MesAno",
+                          "dt_MesAnoReferencia", "tp_FonteRecursos", "nu_CPFCNPJ" )
+
+```
+
+Selecionando as variaveis em Empenho2015
+
+```{r}
+empenho.data = empenhos2015 %>% select(cd_Acao,vl_Empenho, cd_Programa,nu_Licitacao,nu_Empenho, nu_CPFCNPJ)
+```
+
+Filtrando os número de licitações que possue valor inválido. 
+
+```{r}
+empenho.data = empenho.data %>% filter( nu_Licitacao != '000000000')
+```
+
+Fazendo um merge para uma amostra menor
+```{r}
+emepenhos.merge = sample_n(empenho.data, 100)
+participantes.merge = sample_n(participantes, 50)
+
+resul = full_join(emepenhos.merge, participantes.merge, by=c("nu_Licitacao", "nu_CPFCNPJ"))
+
+resul = resul %>% select(-cd_UGestora, -dt_Ano, -dt_MesAno, -tp_Licitacao)
+
+```
+
+Como o merge foi feito com um certo sucesso, 
+
+```{r}
+  participante.empenho = full_join(empenho.data, participantes, by=c("nu_Licitacao","nu_CPFCNPJ","dt_Ano"))
+  participante.empenho = participante.empenho %>% select(-cd_UGestora, -dt_Ano, -dt_MesAno, -tp_Licitacao)
+
+```
+
+```{r}
+acao <- read.csv("C:/Users/Sarah/Documents/HackFestVII/HackFest/CSV/acao.csv")
+acao = acao %>% filter(dt_Ano == 2015)
+acao = acao %>% select(cd_UGestora,cd_Acao, de_Acao)
+
+empenhos_cpf_acao <- empenhos2015 %>% filter(dt_Ano == 2015, nu_Licitacao != '000000000')
+
+empenhos_cpf_acao <- empenhos_cpf_acao[!duplicated(empenhos_cpf_acao), ]
+acao <- acao[!duplicated(acao), ]
+
+empenhos_cpf_acao = empenhos_cpf_acao %>% select(cd_UGestora, cd_Acao, nu_CPF)
+empenhos_cpf_acao <- empenhos_cpf_acao[!duplicated(empenhos_cpf_acao), ]
+
+empenhos_cpf_acao$cd_Acao <- as.character(empenhos_cpf_acao$cd_Acao)
+acao$cd_Acao <- as.character(acao$cd_Acao)
+
+empenhos_cpf_acao$cd_Acao <- as.numeric(empenhos_cpf_acao$cd_Acao)
+acao$cd_Acao <- as.numeric(acao$cd_Acao)
+
+xx <- merge(empenhos_cpf_acao, acao, by =c("cd_Acao","cd_UGestora"),
+      all.x = T)
+
+empenhos.acao = left_join(empenhos_cpf_acao, acao, by = c("cd_Acao","cd_UGestora"))
+```
+
+Realizando o vocabulário
+```{r}
+vocabulario <- empenhos.acao %>% select(de_Acao)
+vocabulario <- vocabulario[!duplicated(vocabulario), ]
+
+vocabulario
+
+empenhos.vocabulario <-  group_by(empenhos.acao, nu_CPF) %>%
+  summarize(text=paste(de_Acao, collapse=' '))
+```
+
+
+
+
+
+
+
+
+
