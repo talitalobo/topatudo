@@ -50,7 +50,7 @@ h6 {
   margin: 0 auto;
 }
 .bg-light-gray {
-  background-color: #eeeeee;
+  background-color: #0000000;
 }
 .bg-darkest-gray {
   background-color: #222222;
@@ -147,12 +147,16 @@ fieldset[disabled] .btn-xl.active {
   background-color: white;
 }
 .navbar-custom {
-  background-color: #222222;
+  background-color: #FFFFFF;
   border-color: transparent;
 }
 .navbar-custom .navbar-brand {
-  color: #fed136;
+  color: #000000;
   font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
+}
+.img-navbar img{
+  height: 30%;
+  width: 70%;
 }
 .navbar-custom .navbar-brand:hover,
 .navbar-custom .navbar-brand:focus,
@@ -180,27 +184,28 @@ fieldset[disabled] .btn-xl.active {
   text-transform: uppercase;
   font-weight: 400;
   letter-spacing: 1px;
-  color: white;
+  color: black;
 }
 .navbar-custom .nav li a:hover,
 .navbar-custom .nav li a:focus {
-  color: #fed136;
+  color: #000000;
   outline: none;
 }
 .navbar-custom .navbar-nav > .active > a {
   border-radius: 0;
   color: white;
-  background-color: #fed136;
+  background-color: #000000;
 }
 .navbar-custom .navbar-nav > .active > a:hover,
 .navbar-custom .navbar-nav > .active > a:focus {
   color: white;
-  background-color: #fec503;
+  background-color: #000000;
 }
 @media (min-width: 768px) {
   .navbar-custom {
-    background-color: #222222;
-    padding: 25px 0;
+    background-color: #FFFFFF;
+    padding-top: 30px;
+    padding-bottom: 0px;
     -webkit-transition: padding 0.3s;
     -moz-transition: padding 0.3s;
     transition: padding 0.3s;
@@ -218,7 +223,7 @@ fieldset[disabled] .btn-xl.active {
 }
 @media (min-width: 768px) {
   .navbar-custom.affix {
-    background-color: #222222;
+    background-color: #FFFFFF;
     padding: 10px 0;
   }
   .navbar-custom.affix .navbar-brand {
@@ -759,6 +764,7 @@ body {
   background-color: #fff;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
   border-radius: 25px;
+  padding-bottom: 10px;
 }
 .search-form .form-group input.form-control {
   padding-right: 20px;
@@ -783,7 +789,7 @@ body {
 }
 .search-form .form-group:hover,
 .search-form .form-group.hover {
-  width: 50%;
+  width: 330px;
   border-radius: 4px 25px 25px 4px;
 }
 .search-form .form-group span.form-control-feedback {
