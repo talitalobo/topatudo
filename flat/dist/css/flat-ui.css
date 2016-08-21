@@ -6217,3 +6217,24 @@ footer p {
 .navegacao {
   margin-top: 2%;
 }
+
+
+.delim {
+  width: 80%;
+}
+
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.x.axis path {
+  display: none;
+}
