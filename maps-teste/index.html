@@ -17,9 +17,12 @@
             <input type="text" placeholder="Endereço ou cep" ng-model="endereco" />
             <button ng-click="controller.buscarEndereco(endereco)">Buscar</button>
         </div>
-        <div>
+        <div style="margin: 15px 0px 15px 0px">
             <input type="text" placeholder="CNPJ" ng-model="cnpjBuscado" />
             <button ng-click="controller.buscarCNPJ(cnpjBuscado)">Buscar</button>
+        </div>
+        <div>
+            <h3 ng-bind="nomeEmpresa"></h3>
         </div>
         <div style="height: 450px; width: 450px; margin-top: 20px" id="map">
         </div>
