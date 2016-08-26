@@ -9,6 +9,8 @@
 
         this.map;
 
+        var marker;
+
         /**
          * Busca um endereço e atualiza o mapa se o endereço for encontrado
          */
@@ -31,10 +33,20 @@
          * Adiciona um marcador na localização específica
          */
         function adicionaMarcador(localizacao) {
-            var marker = new google.maps.Marker({
+            tiraMarcador();
+            marker = new google.maps.Marker({
                 position: new google.maps.LatLng(localizacao.lat, localizacao.lng),
                 map: self.map
             });
+        };
+
+        /**
+         * Remove o marcador do mapa
+         */
+        function tiraMarcador() {
+            if (marker !== undefined) {
+                marker.setMap(null);
+            }
         };
 
         /**
