@@ -3,7 +3,7 @@
 
     var module = angular.module("MapasTeste");
 
-    module.controller('MainController', ['MainService', function (MainService) {
+    module.controller('MainController', ['$q', 'MainService', function ($q, MainService) {
 
         var self = this;
 
@@ -12,10 +12,24 @@
         var marker;
 
         /**
+         * Busca uma empresa por seu cnpj e atualiza a localização
+         */
+        this.buscarCNPJ = function (cnpjBuscado) {
+            var promise = MainService.buscarCNPJ(cnpjBuscado);
+            promise.then(function (data) {
+                self.buscarEndereco(data.data.infos.endereco);
+                // TODO: aqui colocamos as outras coisas a serem
+                // feitas com as informações da empresa                
+            }, function (error) {
+            });
+        };
+
+        /**
          * Busca um endereço e atualiza o mapa se o endereço for encontrado
          */
         this.buscarEndereco = function (endereco) {
-            MainService.buscarEndereco(endereco).then(function (data) {
+            var promise = MainService.buscarEndereco(endereco);
+            promise.then(function (data) {
                 var info = data.data.status;
                 if (info !== "OK") {
                     alert("O endereço não foi encontrado.");

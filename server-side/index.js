@@ -1,24 +1,24 @@
 var express = require('express');
 var main = require("./src/js/main.js");
-var mysql = require("mysql");
 var app = express();
 
-main.connection = main.startSql(mysql);
-
+/**
+ * Retorna a lista de empresas
+ */
 app.get('/api/empresas', function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin','*');
     res.send(main.recuperaEmpresas());
 });
 
-app.get('/api/empresa', function (req, res) {
+/**
+ * Busca uma empresa por seu cnpj
+ */
+app.get('/api/empresa/cnpj', function (req, res) {
     var requisicao = req.query;
-    var empresa = requisicao["empresa"];
-    res.send(main.buscaEmpresa(empresa));
-});
+    var cnpjBuscado = requisicao["empresa"];
 
-app.post('/api/cadastro', function (req, res) {
-
-    console.log(req.body);
-    res.send(req.body);
+    res.setHeader('Access-Control-Allow-Origin','*');
+    res.send(main.buscaEmpresaCnpj(cnpjBuscado));
 });
 
 var server = app.listen(8081, function () {
