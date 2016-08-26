@@ -6,7 +6,7 @@ var app = express();
  * Retorna a lista de empresas
  */
 app.get('/api/empresas', function (req, res) {
-    res.setHeader('Access-Control-Allow-Origin','*');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.send(main.recuperaEmpresas());
 });
 
@@ -15,11 +15,19 @@ app.get('/api/empresas', function (req, res) {
  */
 app.get('/api/empresa/cnpj', function (req, res) {
     var requisicao = req.query;
-    var cnpjBuscado = requisicao["empresa"];
-
-    res.setHeader('Access-Control-Allow-Origin','*');
-    res.send(main.buscaEmpresaCnpj(cnpjBuscado));
+    var cnpjBuscado = requisicao["cnpj"];
+    var busca = {};
+    // É bom ver como vão ficar essas validações
+    if (!stringInvalida(cnpjBuscado)) {
+        busca = main.buscaEmpresaCnpj(cnpjBuscado);
+    }
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.send(busca);
 });
+
+function stringInvalida(campo) {
+    return campo === undefined || campo.trim().lenth === 0;
+};
 
 var server = app.listen(8081, function () {
     var host = server.address().address

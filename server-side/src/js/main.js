@@ -2,7 +2,7 @@ module.exports = {
     buscaEmpresa: function (empresa) {
     },
 
-    buscaEmpresaCnpj : function(cnpj) {
+    buscaEmpresaCnpj: function (cnpj) {
         return {
             cnpj: 12345678,
             nome: "Empresa sem nome",

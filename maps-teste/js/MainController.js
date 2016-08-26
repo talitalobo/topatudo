@@ -3,43 +3,66 @@
 
     var module = angular.module("MapasTeste");
 
-    module.controller('MainController', ['$q', 'MainService', function ($q, MainService) {
+    /**
+     * Controller principal dos serviços do maps
+     */
+    module.controller('MainController', ['MainService', function (MainService) {
 
         var self = this;
 
+        /**
+         * Mapa
+         */
         this.map;
 
+        /**
+         * Streetview
+         */
+        this.panorama;
+
+        /**
+         * Marcador do mapa
+         */
         var marker;
 
         /**
          * Busca uma empresa por seu cnpj e atualiza a localização
          */
         this.buscarCNPJ = function (cnpjBuscado) {
-            var promise = MainService.buscarCNPJ(cnpjBuscado);
-            promise.then(function (data) {
-                self.buscarEndereco(data.data.infos.endereco);
-                // TODO: aqui colocamos as outras coisas a serem
-                // feitas com as informações da empresa                
-            }, function (error) {
-            });
+            if (campoInvalido(cnpjBuscado)) {
+                alert("Voce deve preencher o campo de busca.");
+            } else {
+                var promise = MainService.buscarCNPJ(cnpjBuscado);
+                promise.then(function (data) {
+                    self.buscarEndereco(data.data.infos.endereco);
+                    // TODO: aqui colocamos as outras coisas a serem
+                    // feitas com as informações da empresa                
+                }, function (error) {
+                });
+            }
         };
 
         /**
          * Busca um endereço e atualiza o mapa se o endereço for encontrado
          */
         this.buscarEndereco = function (endereco) {
-            var promise = MainService.buscarEndereco(endereco);
-            promise.then(function (data) {
-                var info = data.data.status;
-                if (info !== "OK") {
-                    alert("O endereço não foi encontrado.");
-                    return;
-                }
-                var localizacao = data.data.results[0].geometry.location;
-                self.map.setCenter(localizacao);
-                adicionaMarcador(localizacao);
-                self.map.setZoom(15);
-            });
+            if (campoInvalido(endereco)) {
+                alert("Voce deve preencher o campo de busca.");
+            } else {
+                var promise = MainService.buscarEndereco(endereco);
+                promise.then(function (data) {
+                    var info = data.data.status;
+                    if (info !== "OK") {
+                        alert("O endereço não foi encontrado.");
+                        return;
+                    }
+                    var localizacao = data.data.results[0].geometry.location;
+                    self.map.setCenter(localizacao);
+                    adicionaMarcador(localizacao);
+                    self.map.setZoom(15);
+                    self.panorama.setPosition(localizacao);
+                });
+            }
         };
 
         /**
@@ -55,6 +78,7 @@
         };
 
         /**
+         * @private
          * Remove o marcador do mapa
          */
         function tiraMarcador() {
@@ -64,14 +88,31 @@
         };
 
         /**
+         * @private
+         * Verifica se o campo não indefinido ou vazio.
+         */
+        function campoInvalido(campo) {
+            return campo === undefined || campo.trim().length === 0;
+        }
+
+        /**
          * Função main, inicia o mapa
          */
         (function () {
+            // Inicia no Brasil todo
+            var defaultInitPosition = { lat: -11.5389993, lng: -52.5794322 };
             self.map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: -11.5389993, lng: -52.5794322 },
+                center: defaultInitPosition,
                 zoom: 4
             });
-            console.log(self.map);
+            self.panorama = new google.maps.StreetViewPanorama(
+                document.getElementById('panorama'), {
+                    position: defaultInitPosition,
+                    pov: {
+                        heading: 34,
+                        pitch: 10
+                    }
+                });
         })();
     }]);
 
