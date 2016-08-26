@@ -2,44 +2,24 @@
 <html>
 
 <head>
-    <script src="main.js"></script>
-    <style type="text/css">
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 10;
-            width: 100%;
-        }
-        
-        .mapa {
-            height: 100%;
-            margin: 0;
-            padding: 10;
-            width: 100%;
-        }
-
-        #map {
-            margin: 10px;
-            height: 50%;
-            width: 50%;
-        }
-
-        #panorama {
-            margin: 10px;
-            height: 50%;
-            width: 50%;
-        }
-        
-    </style>
-</head>
-
-<body>
-    <div id="map"></div>
-    <div id="panorama"></div>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHpNq2XMrvxC6QsL5JwPZTsgQ5F5mp4r0&libraries=places&callback=initMap">
+    <meta charset="UTF-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHpNq2XMrvxC6QsL5JwPZTsgQ5F5mp4r0&libraries=places">
     </script>
 
+    <script src="js/MainService.js"></script>
+    <script src="js/MainController.js"></script>
+</head>
+
+<body ng-app="MapasTeste">
+    <div ng-controller='MainController as controller'>
+        <div>
+            <input type="text" placeholder="Endereço ou cep" ng-model="endereco" />
+            <button ng-click="controller.buscarEndereco(endereco)">Buscar</button>
+        </div>
+        <div style="height: 450px; width: 450px; margin-top: 20px" id="map">
+        </div>
+    </div>
 </body>
 
 </html>
