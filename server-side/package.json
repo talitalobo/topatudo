@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "optimist": ">= 0.1.0",
-    "mysql": "~2.3.2",
+    "mysql": "~2.5.4",
     "express": "^4.10.6",
     "body-parser": "~1.15.2"
   }

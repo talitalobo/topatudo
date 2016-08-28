@@ -16,13 +16,7 @@ app.get('/api/empresas', function (req, res) {
 app.get('/api/empresa/cnpj', function (req, res) {
     var requisicao = req.query;
     var cnpjBuscado = requisicao["cnpj"];
-    var busca = {};
-    // É bom ver como vão ficar essas validações
-    if (!stringInvalida(cnpjBuscado)) {
-        busca = main.buscaEmpresaCnpj(cnpjBuscado);
-    }
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.send(busca);
+    main.buscaEmpresaCnpj(res, cnpjBuscado);
 });
 
 function stringInvalida(campo) {
