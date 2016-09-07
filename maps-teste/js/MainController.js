@@ -34,8 +34,8 @@
             } else {
                 var promise = MainService.buscarCNPJ(cnpjBuscado);
                 promise.then(function (data) {
-                    self.buscarEndereco(data.data.infos.endereco);
-                    $scope.nomeEmpresa = data.data.nome;
+                    self.buscarEndereco(data.data.cep);
+                    // $scope.nomeEmpresa = data.data.nome;
                     // TODO: aqui colocamos as outras coisas a serem
                     // feitas com as informações da empresa                
                 }, function (error) {

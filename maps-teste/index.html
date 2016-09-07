@@ -6,27 +6,35 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHpNq2XMrvxC6QsL5JwPZTsgQ5F5mp4r0&libraries=places">
     </script>
+    <link href="css/estilos.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <script src="js/MainService.js"></script>
     <script src="js/MainController.js"></script>
 </head>
 
 <body ng-app="MapasTeste">
-    <div ng-controller='MainController as controller'>
-        <div>
-            <input type="text" placeholder="Endereço ou cep" ng-model="endereco" />
-            <button ng-click="controller.buscarEndereco(endereco)">Buscar</button>
+    <div class="corpo container" ng-controller='MainController as controller'>
+        <div class="row">
+            <h2 class="titulos">TopaTudo</h2>
+            <h4 class="titulos">Pesquisa de endereço de empresas por CNPJ</h4>
         </div>
-        <div style="margin: 15px 0px 15px 0px">
-            <input type="text" placeholder="CNPJ" ng-model="cnpjBuscado" />
-            <button ng-click="controller.buscarCNPJ(cnpjBuscado)">Buscar</button>
+        <div class="row">
+            <input class="entrada" type="text" placeholder="Endereço ou cep" ng-model="endereco" />
+            <button class="entrada" ng-click="controller.buscarEndereco(endereco)">Buscar</button>
+        </div>
+        <div class="row">
+            <input class="entrada" type="text" placeholder="CNPJ" ng-model="cnpjBuscado" />
+            <button class="entrada" ng-click="controller.buscarCNPJ(cnpjBuscado)">Buscar</button>
         </div>
         <div>
             <h3 ng-bind="nomeEmpresa"></h3>
         </div>
-        <div style="height: 450px; width: 450px; margin-top: 20px" id="map">
-        </div>
-        <div style="height: 450px; width: 450px; margin-top: 20px" id="panorama">
+        <div class="row">
+            <div class="col-md-6 mapa mapa-esquerda" id="map">
+            </div>
+            <div class="col-md-6 mapa mapa-direita" id="panorama">
+            </div>
         </div>
     </div>
 </body>

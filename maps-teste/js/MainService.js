@@ -38,7 +38,7 @@
          * Realiza uma busca de empresa por CNPJ
          */
         this.buscarCNPJ = function (cnpjBuscado) {
-            return $http.get(BUSCA_CNPJ + cnpjBuscado);
+            return $http.get(BUSCA_CNPJ + cnpjBuscado.trim());
         };
     }]);
 } ())

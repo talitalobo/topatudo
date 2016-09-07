@@ -15,8 +15,8 @@ module.exports = {
      * Busca as informações de uma empresa por seu cnpj
      */
     buscaEmpresaCnpj: function (res, cnpj) {
-        var QUERY_EMPRESA = 'SELECT * FROM empresas WHERE cnpj_empresa = ' + cnpj;
-        // res.setHeader('Access-Control-Allow-Origin', '*');
+        var QUERY_EMPRESA = 'SELECT * FROM empresas WHERE cnpj = ' + cnpj;
+        res.setHeader('Access-Control-Allow-Origin', '*');
         connection.query(QUERY_EMPRESA, function (err, rows, fields) {
             if (err !== null || rows.length === 0) {
                 res.status(400).send({ 'error': 'Nao foi possivel encontrar a empresa.' });

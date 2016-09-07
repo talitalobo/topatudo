@@ -1,0 +1,70 @@
+.titulos {
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.corpo {
+    background-color: #f6ffed;
+}
+
+.bloco-centro {
+    display: block;
+    padding: 10px;
+}
+
+.entrada {
+    margin: 5px auto 5px auto;
+    display: block;
+}
+
+.bloco-mapas {
+    margin: auto;
+    display: block;
+}
+
+.mapa {
+    height: 450px;
+    max-width: 46%; 
+    display: block;
+    border: 15px;
+    border-color: black;
+    border-radius: 2px;
+}
+
+.mapa-esquerda {
+    margin: 0% 1% 0% 3%;
+}
+
+.mapa-direita {
+    margin: 0% 3% 0% 1%;
+}
+
+input {
+   -moz-border-radius: 15px;
+    border-radius: 5px;
+    border:solid 1px black;
+    padding:5px;
+}
+
+button {
+  margin: 0 auto;
+  font-size: 2.0rem;
+  padding: 0.7rem 2.5rem;
+  display: block;
+  background-color: linen;
+  border: 1px solid;
+  color: cornflowerblue;
+  font-weight: 300;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: cornflowerblue;
+  color: black;
+  border-color: #009ac9;
+}
