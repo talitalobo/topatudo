@@ -3,6 +3,18 @@ var main = require("./src/js/main.js");
 var app = express();
 
 /**
+ * Serve os arquivos estáticos de scripts
+ */
+app.use('/topatudo/static', express.static(__dirname + '/maps-front'));
+
+/**
+ * Serve a pagina de busca
+ */
+app.get('/topatudo/busca', function (req, res) {
+    res.sendfile('maps-front/index.html');
+});
+
+/**
  * Retorna a lista de empresas
  */
 app.get('/api/empresas', function (req, res) {
