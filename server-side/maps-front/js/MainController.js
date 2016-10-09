@@ -39,6 +39,8 @@
                     // TODO: aqui colocamos as outras coisas a serem
                     // feitas com as informações da empresa                
                 }, function (error) {
+                    console.log(error);
+                    alert(error.data.error);
                 });
             }
         };

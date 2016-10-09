@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <title>TopaTudo</title>
+    <script src="static/js/angular.min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHpNq2XMrvxC6QsL5JwPZTsgQ5F5mp4r0&libraries=places">
     </script>
     <link href="static/css/estilos.css" rel="stylesheet">
@@ -20,12 +21,16 @@
             <h4 class="titulos">Pesquisa de endereço de empresas por CNPJ</h4>
         </div>
         <div class="row">
-            <input class="entrada" type="text" placeholder="Endereço ou cep" ng-model="endereco" />
-            <button class="entrada" ng-click="controller.buscarEndereco(endereco)">Buscar</button>
+            <form>
+                <input class="entrada" type="text" placeholder="Endereço ou cep" ng-model="endereco" />
+                <button class="entrada" ng-click="controller.buscarEndereco(endereco)">Buscar</button>
+            </form>
         </div>
         <div class="row">
-            <input class="entrada" type="text" placeholder="CNPJ" ng-model="cnpjBuscado" />
-            <button class="entrada" ng-click="controller.buscarCNPJ(cnpjBuscado)">Buscar</button>
+            <form>
+                <input class="entrada" type="text" placeholder="CNPJ" ng-model="cnpjBuscado" />
+                <button class="entrada" type="submit" ng-click="controller.buscarCNPJ(cnpjBuscado)">Buscar</button>
+            </form>
         </div>
         <div>
             <h3 ng-bind="nomeEmpresa"></h3>
